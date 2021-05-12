@@ -17,6 +17,57 @@ const roleName = '2 Month Supporter';
 
 //client.snipes = new Discord.Collection();
 
+
+//Slash commands =>
+
+client.on('interaction', async interaction => {
+    let guess = interaction.options[0].value;
+    let good = `nCpCjHAsr6`;
+    let guessChars = guess.split('');
+    let goodChars = good.split('');
+    const intersection = goodChars.filter(value=>guessChars.includes(value));
+    var matched = 0;
+    for (matched = good.length; matched >= 0;  matched--)
+    {
+        let s = good.substr(0,matched);
+        let t = guess.substr(0,matched);
+        if (s === t) break;
+    }
+	if (interaction.commandName === 'ordercheck') await interaction.reply(`You have ${matched}/${good.length} in the right order`, { ephemeral: true });
+});
+
+//Slash commands <=
+
+//Slash commands =>
+
+client.on('interaction', async interaction => {
+	if (!interaction.isCommand()) return;
+    let guess = interaction.options[0].value;
+    let good = `nCpCjHAsr6`;
+    let guessChars = guess.split('');
+    let goodChars = good.split('');
+    const intersection = goodChars.filter(value=>guessChars.includes(value));
+    var matched = 0;
+    for (matched = good.length; matched >= 0;  matched--)
+    {
+        let s = good.substr(0,matched);
+        let t = guess.substr(0,matched);
+        if (s === t) break;
+    }
+	if (interaction.commandName === 'hint') await interaction.reply(`You have ${intersection.length-1} correct characters`, { ephemeral: true });
+});
+
+//Slash commands <=
+
+//Slash commands =>
+
+client.on('interaction', async interaction => {
+	if (!interaction.isCommand()) return;
+	if (interaction.commandName === 'ping') await interaction.reply('Pong!', { ephemeral: true });
+});
+
+//Slash commands <=
+
 client.once('ready', () => {
     console.log(`I'm Ready!`);
 });

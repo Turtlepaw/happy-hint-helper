@@ -1,0 +1,31 @@
+{
+  "name": "turtlebot",
+  "version": "1.0.0",
+  "description": "The bot for all Turtles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TurtlePaw/Turtlebot.git"
+  },
+  "keywords": [
+    "turtle",
+    "bot",
+    "discord"
+  ],
+  "author": "TurtlePaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TurtlePaw/Turtlebot/issues"
+  },
+  "homepage": "https://github.com/TurtlePaw/Turtlebot#readme",
+  "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
+    "discordjs-reaction-role": "^1.0.0",
+    "key-file-storage": "^2.2.9",
+    "klaw-sync": "^6.0.0",
+    "uuid": "^8.3.2"
+  }
+}

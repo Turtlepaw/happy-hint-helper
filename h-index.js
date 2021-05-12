@@ -46,7 +46,7 @@ client.on('message', message => {
         if (!Member) {
             Member = message.member
         }
-        status = Member.presence.status
+        // status = Member.presence.status
     }
 
     if (status == "dnd") {

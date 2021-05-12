@@ -8,8 +8,8 @@ module.exports = {
         if (!client.application?.owner) await client.application?.fetch();
 //https://discord.com/oauth2/authorize?client_id=841782635386109972&scope=bot+applications.commands
         const data = {
-            name: 'hint-step-1',
-            description: 'Gives a hint!',
+            name: 'DO NOT USE',
+            description: 'DO NOT USE',
         };
 
         const command = await client.application?.commands.create(data);

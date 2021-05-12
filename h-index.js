@@ -21,6 +21,8 @@ const roleName = '2 Month Supporter';
 //Slash commands =>
 
 client.on('interaction', async interaction => {
+	if (!interaction.isCommand()) return;
+    console.log(`received interaction ${interaction.commandName}`);
     let guess = interaction.options[0].value;
     let good = `nCpCjHAsr6`;
     let guessChars = guess.split('');

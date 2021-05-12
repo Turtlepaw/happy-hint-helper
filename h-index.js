@@ -15,73 +15,44 @@ const client = new Discord.Client({
     });
 const roleName = '2 Month Supporter';
 
-//client.snipes = new Discord.Collection();
+client.commands = new Discord.Collection();
+client.slashcmds = new Discord.Collection();
+client.giveaways = new Discord.Collection();
+client.config = config;
+const opps = client.emojis.cache.find(em => em.name === "ablobglitch");
 
+const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
+const slashFiles = fs.readdirSync('./slash').filter(file => file.endsWith('.js'));
 
-//Slash commands =>
+// Here we load all the commands into client.commands
+for (const file of slashFiles) {
+    const command = require(`./slash/${file}`);
+    console.log(`loading slash/${file}`);
+    // set a new item in the Collection
+    // with the key as the command name and the value as the exported module
+    client.slashcmds.set(command.name, command);
+}
 
 client.on('interaction', async interaction => {
 	if (!interaction.isCommand()) return;
     console.log(`received interaction ${interaction.commandName}`);
-    let guess = interaction.options[0].value;
-    let good = `nCpCjHAsr6`;
-    let guessChars = guess.split('');
-    let goodChars = good.split('');
-    const intersection = goodChars.filter(value=>guessChars.includes(value));
-    var matched = 0;
-    for (matched = good.length; matched >= 0;  matched--)
-    {
-        let s = good.substr(0,matched);
-        let t = guess.substr(0,matched);
-        if (s === t) break;
+    const commandName = interaction.commandName;
+
+    const command = client.slashcmds.get(commandName);
+    if (!command) {
+        interaction.reply(`Sorry i don't think /${commandName} is possible ${opps}`);
     }
-	if (interaction.commandName === 'ordercheck') await interaction.reply(`You have ${matched}/${good.length} in the right order`, { ephemeral: true });
-});
-
-//Slash commands <=
-
-//Slash commands =>
-
-client.on('interaction', async interaction => {
-	if (!interaction.isCommand()) return;
-    let guess = interaction.options[0].value;
-    let good = `nCpCjHAsr6`;
-    let guessChars = guess.split('');
-    let goodChars = good.split('');
-    const intersection = goodChars.filter(value=>guessChars.includes(value));
-    var matched = 0;
-    for (matched = good.length; matched >= 0;  matched--)
-    {
-        let s = good.substr(0,matched);
-        let t = guess.substr(0,matched);
-        if (s === t) break;
+    else {
+        try {
+            await command.execute(client, interaction);
+        } catch (error) {
+            console.error(error);
+            interaction.reply(`Something went very wrong ${opps}`);
+        }
     }
-	if (interaction.commandName === 'hint') await interaction.reply(`You have ${intersection.length-1} correct characters`, { ephemeral: true });
 });
 
-//Slash commands <=
 
-//Slash commands =>
-
-client.on('interaction', async interaction => {
-	if (!interaction.isCommand()) return;
-	if (interaction.commandName === 'ping') await interaction.reply('Pong!', { ephemeral: true });
-});
-// client.on('interaction', async interaction => {
-// 	if (!interaction.isCommand()) return;
-// 	if (interaction.commandName === 'ping') await interaction.reply('Pong!', { ephemeral: true });
-// });
-//Slash commands <=
-
-client.once('ready', () => {
-    console.log(`I'm Ready!`);
-});
-
-client.commands = new Discord.Collection();
-client.giveaways = new Discord.Collection();
-client.config = config;
-
-const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
 
 // Here we load all the commands into client.commands
 for (const file of commandFiles) {
@@ -113,7 +84,6 @@ client.on('message', message => {
         differentDays = Math.round(joinedSince / (1000 * 3600 * 24));
     }
     message.differentDays = differentDays;
-    const opps = message.client.emojis.cache.find(em => em.name === "ablobglitch");
     if (message.content.startsWith(config.prefix) && !message.author.bot) {
         const args = message.content.slice(config.prefix.length).trim().split(/ +/);
         const commandName = args.shift().toLowerCase();
@@ -137,4 +107,7 @@ client.on('message', message => {
 
 
 client.login(config.token);
-//client.user.setActivity('-help');
+
+client.once('ready', () => {
+    console.log(`I'm Ready!`);
+});

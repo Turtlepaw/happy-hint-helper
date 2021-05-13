@@ -8,11 +8,11 @@ module.exports = {
         if (!client.application?.owner) await client.application?.fetch();
 //https://discord.com/oauth2/authorize?client_id=841782635386109972&scope=bot+applications.commands
         const data = {
-            name: 'DO NOT USE',
-            description: 'DO NOT USE',
+            name: 'hint-step-5',
+            description: 'Gives a hint for step 5',
         };
 
-        const command = await client.application?.commands.create(data);
+        const command = await client.guilds.cache.get('841737708825215047')?.commands.create(data);
         console.log(command);
     }
 }

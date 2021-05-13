@@ -40,7 +40,7 @@ client.on('interaction', async interaction => {
 
     const command = client.slashcmds.get(commandName);
     if (!command) {
-        interaction.reply(`Sorry i don't think /${commandName} is possible ${opps}`);
+        //interaction.reply(`Sorry i don't think /${commandName} is possible...`);
     }
     else {
         try {

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'invites',
+    name: 'invite',
     description: 'Generates an invite for your server',
     async execute(message, Member, args) {
         message.delete();

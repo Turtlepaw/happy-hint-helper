@@ -13,7 +13,7 @@ module.exports = {
         }
         else
         {
-            await interaction.reply(`omg not a single correct characters`, { ephemeral: true });
+            await interaction.reply(`Not a single correct character`, { ephemeral: true });
         }
     }
 }

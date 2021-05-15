@@ -47,7 +47,7 @@ client.on('interaction', async interaction => {
             await command.execute(client, interaction);
         } catch (error) {
             console.error(error);
-            interaction.reply(`Something went very wrong ${opps}`);
+            await interaction.reply(`Something went very wrong ${opps}`);
         }
     }
 });

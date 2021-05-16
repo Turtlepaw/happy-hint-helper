@@ -35,7 +35,7 @@ for (const file of slashFiles) {
 
 client.on('interaction', async interaction => {
 	if (!interaction.isCommand()) return;
-    console.log(`received interaction ${interaction.commandName}`);
+    console.log(`Received interaction ${interaction.commandName}`);
     const commandName = interaction.commandName;
 
     const command = client.slashcmds.get(commandName);

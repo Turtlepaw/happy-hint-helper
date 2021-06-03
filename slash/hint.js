@@ -18,11 +18,21 @@ module.exports = {
         let index = good.indexOf(guess);
         if (common >= 0)
         {
-            await interaction.reply(`You have ${common} correct characters`, { ephemeral: true });
+            const embedd = new Discord.MessageEmbed()
+            .setTitle(`${common}`)
+            .setDescription(`You have ${common} correct characters`)
+            .setFooter(`${client.user.username}`, client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+            .setColor(client.confiig.color)
+            await interaction.reply({ embeds: [ embedd ], ephemeral: true });
         }
         else
         {
-            await interaction.reply(`Not a single correct character`, { ephemeral: true });
+            const embeddd = new Discord.MessageEmbed()
+            .setTitle(`0 Correct characters!`)
+            .setDescription(`You did not get any correct character!`)
+            .setFooter(`${client.user.username}`, client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+            .setColor(client.confiig.color)
+            await interaction.reply({ embeds: [ embeddd ], ephemeral: true });
         }
     }
 }

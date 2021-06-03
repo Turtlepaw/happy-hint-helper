@@ -12,7 +12,13 @@ module.exports = {
             let t = guess.substr(0, matched);
             if (s === t) break;
         }
-        await interaction.reply(`You have ${matched}/${good.length} in the right order`, { ephemeral: true });
+        //await interaction.reply(`You have ${matched}/${good.length} in the right order`, { ephemeral: true });
+            const embedd = new Discord.MessageEmbed()
+            .setTitle(`${matched}/${good.length}`)
+            .setDescription(`You have ${matched}/${good.length} in the right order`)
+            .setFooter(`${client.user.username}`, client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+            .setColor(client.confiig.color)
+            await interaction.reply({ embeds: [ embedd ], ephemeral: true });
     }
 }
 

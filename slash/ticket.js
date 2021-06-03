@@ -12,7 +12,7 @@ module.exports = {
         .setColor("AQUA")
         .setTimestamp()
         const channel = client.channels.cache.get("841829345424834631");
-        interaction.channel.send(embedd)
+        channel.send(embedd)
         .then((edittthis) => {
             edittthis.react('✅')
             edittthis.react('❎')
@@ -21,14 +21,32 @@ module.exports = {
                     return
                 }
                 if (reaction.emoji.name === '✅') {
-                    interaction.user.send(`Your ticket has been approved`)
+                    interaction.user.send(
+                        new Discord.MessageEmbed()
+                        .setTitle(`Your ticket has been approved!`)
+                        .addField(`Your Message:`, `${msgg}`)
+                        .setFooter(`${client.user.username}`, client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+                        .setColor(client.confiig.color)
+                    )
                 }
                 if (reaction.emoji.name === '❎') {
-                    interaction.user.send(`Your ticket has been denied`)
+                    interaction.user.send(
+                    new Discord.MessageEmbed()
+                    .setTitle(`Your ticket has been denied`)
+                    .addField(`Your Message:`, `${msgg}`)
+                    .setFooter(`${client.user.username}`, client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+                    .setColor(client.confiig.color)
+                    )
                 }
             })
         });        
-        await interaction.reply('Your ticket has been recived!\nYou may get a reply in the next 24 hours', { ephemeral: true });
+        const sent = new Discord.MessageEmbed()
+        .setTitle(`Your ticket has been recived!`)
+        .addField(`Your Message:`, `${msgg}`)
+        .setDescription(`You may get a reply in the next 24 hours!`)
+        .setFooter(`${client.user.username}`, client.user.displayAvatarURL({ dynamic: true, size: 1024 }))
+        .setColor(client.confiig.color)
+        await interaction.reply({ embeds: [ sent ], ephemeral: true });
 
     }
 }

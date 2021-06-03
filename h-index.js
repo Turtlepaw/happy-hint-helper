@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+const configg = require('./config2.json')
 const fs = require('fs');
 
 //const keyv = new Keyv('sqlite:react.sqlite');
@@ -18,6 +19,7 @@ const roleName = '2 Month Supporter';
 client.commands = new Discord.Collection();
 client.slashcmds = new Discord.Collection();
 client.giveaways = new Discord.Collection();
+client.confiig = configg;
 client.config = config;
 const opps = client.emojis.cache.find(em => em.name === "ablobglitch");
 

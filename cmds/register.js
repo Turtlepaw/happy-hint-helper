@@ -12,7 +12,7 @@ module.exports = {
             description: 'Gives a list of slash commands!',
         };
 
-        //const command = await client.application?.commands.create(data);
+        const command = await client.application?.commands.create(data);
         //const command = await client.guilds.cache.get('842575277249921074')?.commands.create(data);
         console.log(command);
     }

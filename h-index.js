@@ -12,7 +12,8 @@ const client = new Discord.Client({
 
     presence: {
         status: 'online',
-        activities: [ { name: `/hint`, type: 'PLAYING'}],       }
+        activities: [ { name: `Turtlepaw Chairs | /help`, type: 'PLAYING'}],
+    }
     });
 const roleName = '2 Month Supporter';
 

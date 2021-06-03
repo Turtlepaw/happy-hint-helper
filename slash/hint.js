@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'hint',
-    description: 'Gives a hint',
+    description: 'Says how many characters are correct!',
     async execute(client, interaction) {
         let guess = interaction.options[0].value;
         let good = client.config.hints[interaction.guildID]; //`nCpCjHAsr6`;

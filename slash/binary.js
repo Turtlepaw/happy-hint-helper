@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'binary',
-    description: 'Gives a hint',
+    description: 'Shows steps for converting binary',
     async execute(client, interaction) {
         await interaction.reply(
         new Discord.MessageEmbed()

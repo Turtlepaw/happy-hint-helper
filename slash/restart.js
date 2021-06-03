@@ -3,7 +3,7 @@ const wait = require('util').promisify(setTimeout);
 
 module.exports = {
     name: 'restart',
-    description: 'Gives a hint',
+    description: 'Restarts the bot',
     async execute(client, interaction) {
         const rstart = new Discord.MessageEmbed()
         .setTitle(`Restarting...`)

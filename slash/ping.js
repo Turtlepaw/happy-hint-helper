@@ -3,7 +3,7 @@ const wait = require('util').promisify(setTimeout);
 
 module.exports = {
     name: 'ping',
-    description: 'Gives a hint',
+    description: 'Gives the bots ping!',
     async execute(client, interaction) {
         await interaction.reply(`🏓 Pinging....`);
         await wait(1000);

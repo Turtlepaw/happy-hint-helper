@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'ticket',
-    description: 'Gives a hint',
+    description: 'Creates a ticket!',
     async execute(client, interaction) {
         let msgg = interaction.options[0].value;
         const embedd = new Discord.MessageEmbed()

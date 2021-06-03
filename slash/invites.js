@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'invites',
-    description: 'Gives a hint',
+    description: 'Shows a list of chair servers',
     async execute(client, interaction) {
         const inviteem = new Discord.MessageEmbed()
         .setTitle(`Invites:`)

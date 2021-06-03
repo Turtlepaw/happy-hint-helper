@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'hint-step-4',
-    description: 'Gives a hint',
+    description: 'Gives a hint for step 4',
     async execute(client, interaction) {
         let server = client.config.server[interaction.guildID];
         let hintmsg = client.config.hints4[server];

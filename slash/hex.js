@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'hex',
-    description: 'Gives a hint',
+    description: 'Shows steps for converting hex',
     async execute(client, interaction) {
         await interaction.reply(
             new Discord.MessageEmbed()

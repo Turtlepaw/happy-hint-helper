@@ -8,17 +8,12 @@ module.exports = {
         if (!client.application?.owner) await client.application?.fetch();
 //https://discord.com/oauth2/authorize?client_id=841782635386109972&scope=bot+applications.commands
         const data = {
-            name: 'ticket',
-            description: 'Sends a ticket',
-            options: [{
-				name: 'message',
-				type: 'STRING',
-				description: 'Sends a message of choice to host',
-				required: true,
-			}],
+            name: 'help',
+            description: 'Gives a list of slash commands!',
         };
 
-        const command = await client.guilds.cache.get('841737708825215047')?.commands.create(data);
+        //const command = await client.application?.commands.create(data);
+        //const command = await client.guilds.cache.get('842575277249921074')?.commands.create(data);
         console.log(command);
     }
 }

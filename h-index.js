@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const configg = require('./config2.json')
 const fs = require('fs');
+const mongoose = require('mongoose')
 
 //const keyv = new Keyv('sqlite:react.sqlite');
 //keyv.on('error', err => console.error('Keyv connection error:', err));
@@ -24,7 +25,7 @@ client.giveaways = new Discord.Collection();
 client.confiig = configg;
 client.config = config;
 const opps = client.emojis.cache.find(em => em.name === "ablobglitch");
-
+mongoose.connect(config.mongoose, { useNewUrlParser: true, useUnifiedTopology: true })
 const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
 const slashFiles = fs.readdirSync('./slash').filter(file => file.endsWith('.js'));
 
@@ -51,7 +52,7 @@ client.on('interaction', async interaction => {
             await command.execute(client, interaction);
         } catch (error) {
             console.error(error);
-            await interaction.reply(`Something went very wrong ${opps}`);
+            //await interaction.reply(`Something went very wrong ${opps}`);
         }
     }
 });
@@ -94,7 +95,7 @@ client.on('message', message => {
 
         const command = client.commands.get(commandName);
         if (!command) {
-            message.reply(`Sorry i don't think ${commandName} is possible ${opps}`);
+            //message.reply(`Sorry i don't think ${commandName} is possible ${opps}`);
         }
         else {
             try {

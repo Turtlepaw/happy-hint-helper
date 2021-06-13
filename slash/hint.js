@@ -1,11 +1,13 @@
 const Discord = require('discord.js');
+const commandsss = require('../models/commands')
+const config = require('../config.json')
 
 module.exports = {
     name: 'hint',
     description: 'Says how many characters are correct!',
     async execute(client, interaction) {
         let guess = interaction.options[0].value;
-        let good = client.config.hints[interaction.guildID]; //`nCpCjHAsr6`;
+        let good = config.hints[interaction.guildID];
         let guessArray = guess.split('');
         let goodArray = good.split('');
         let common = 0;
@@ -15,6 +17,27 @@ module.exports = {
             else
                 break;
         }
+        ///
+        let cmdsa = await commandsss.findOne({
+            user: interaction.user.id
+        });
+    
+        if (!cmdsa) {
+            cmdsa = new commandsss({
+                user: interaction.user.id,
+                uses: 0,
+                guess: guess,
+            });
+            await cmdsa.save().catch(e => console.log(e));
+        };
+        await commandsss.findOne({
+            user: interaction.user.id
+        }, async (err, dUser) => {
+            if (err) console.log(err);
+            dUser.uses += 1;
+            await dUser.save().catch(e => console.log(e));
+        });
+        ///
         let index = good.indexOf(guess);
         if (common >= 0)
         {

@@ -6,7 +6,8 @@ module.exports = {
     name: 'stats',
     description: 'Gives a hint for step 1',
     async execute(client, interaction) {
-        if(interaction.user.id === config.hosts){
+        //if(interaction.user.id === config.hosts){
+        if(config.hosts.indexOf(interaction.user.id) !== -1) {
         let server = client.config.server[interaction.guildID];
         let hintmsg = client.config.hints1[server];
 

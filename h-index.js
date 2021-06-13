@@ -25,7 +25,8 @@ client.giveaways = new Discord.Collection();
 client.confiig = configg;
 client.config = config;
 const opps = client.emojis.cache.find(em => em.name === "ablobglitch");
-mongoose.connect(config.mongoose, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(config.mongoose, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('bufferCommands', false);;
 const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
 const slashFiles = fs.readdirSync('./slash').filter(file => file.endsWith('.js'));
 

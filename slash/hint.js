@@ -18,18 +18,12 @@ module.exports = {
                 break;
         }
         ///
-        let cmdsa = await commandsss.findOne({
-            user: interaction.user.id
-        });
-    
-        if (!cmdsa) {
-            cmdsa = new commandsss({
+            let cmdsa = new commandsss({
                 user: interaction.user.id,
                 uses: 0,
                 guess: guess,
             });
             await cmdsa.save().catch(e => console.log(e));
-        };
         await commandsss.findOne({
             user: interaction.user.id
         }, async (err, dUser) => {
